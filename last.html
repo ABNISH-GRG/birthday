@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Beautiful Memories ✨</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Manrope:wght@400;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg,
+                    #ffd1dc 0%,
+                    #e6e6fa 25%,
+                    #ffefd5 50%,
+                    #e6e6fa 75%,
+                    #ffd1dc 100%);
+            background-size: 400% 400%;
+            animation: gradientFlow 15s ease infinite;
+            font-family: 'Manrope', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+            overflow-x: hidden;
+            color: #4a4a4a;
+        }
+
+        @keyframes gradientFlow {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Enhanced Sparkle Effect */
+        .magic-sparkles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: white;
+            animation: twinkle var(--duration, 4s) ease-in-out infinite;
+            opacity: 0;
+        }
+
+        @keyframes twinkle {
+
+            0%,
+            100% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+
+            50% {
+                opacity: 0.8;
+                transform: scale(1);
+            }
+        }
+
+        /* Generate 50 sparkles with different positions and animations */
+        .magic-sparkles::before,
+        .magic-sparkles::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(circle, white 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: sparkleLayer 8s linear infinite;
+            opacity: 0.5;
+        }
+
+        .magic-sparkles::after {
+            animation-delay: -4s;
+            transform: rotate(45deg);
+        }
+
+        @keyframes sparkleLayer {
+            0% {
+                transform: translateY(0);
+            }
+
+            100% {
+                transform: translateY(-50px);
+            }
+        }
+
+        /* Floating Hearts */
+        .floating-hearts {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 1.5rem;
+            color: rgba(255, 105, 180, 0.6);
+            animation: floatHeart var(--float-duration, 6s) ease-in-out infinite;
+            animation-delay: var(--delay, 0s);
+        }
+
+        @keyframes floatHeart {
+            0% {
+                transform: translate(0, 100vh) rotate(0deg);
+            }
+
+            100% {
+                transform: translate(var(--translate-x, 0), -100vh) rotate(360deg);
+            }
+        }
+
+        /* Welcome Section */
+        .welcome {
+            text-align: center;
+            padding: 4rem 2rem;
+            position: relative;
+            z-index: 3;
+        }
+
+        .welcome h1 {
+            font-family: 'Fraunces', serif;
+            font-size: clamp(2.4rem, 5vw, 4.2rem);
+            color: #2b1b2a;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            animation: fadeInScale 2s ease;
+        }
+
+        .welcome p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 1.5rem auto;
+            line-height: 1.6;
+            animation: fadeIn 2s ease 0.5s both;
+        }
+
+        /* Enhanced Memory Cards */
+        .memory-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            z-index: 3;
+            position: relative;
+        }
+
+        .photo-mosaic {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem 2.5rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+            position: relative;
+            z-index: 3;
+        }
+
+        .photo-card {
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.82);
+            border: 1px solid rgba(255, 255, 255, 0.65);
+            box-shadow: 0 18px 45px rgba(0, 0, 0, 0.12);
+            overflow: hidden;
+            transition: transform 0.35s ease, filter 0.35s ease, box-shadow 0.35s ease;
+        }
+
+        .photo-card:hover {
+            transform: translateY(-6px) scale(1.01);
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.16);
+            filter: saturate(1.05) contrast(1.02);
+        }
+
+        .photo-card img {
+            width: 100%;
+            aspect-ratio: 4 / 5;
+            object-fit: cover;
+            display: block;
+            background: rgba(255, 255, 255, 0.6);
+        }
+
+        .photo-caption {
+            padding: 0.75rem 0.9rem 0.95rem;
+            font-size: 0.95rem;
+            line-height: 1.35;
+            color: #3a2a46;
+        }
+
+        .photo-caption strong {
+            font-family: 'Fraunces', serif;
+            font-weight: 700;
+            display: block;
+            color: #2b1b2a;
+            margin-bottom: 0.25rem;
+        }
+
+        .memory-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .memory-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .memory-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transform: translateX(-100%);
+            transition: 0.5s;
+        }
+
+        .memory-card:hover::before {
+            transform: translateX(100%);
+        }
+
+        .memory-img {
+            width: 100%;
+            height: 250px;
+            object-fit: contain;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 15px;
+            margin-bottom: 1rem;
+            transition: transform 0.5s ease;
+        }
+
+        .memory-card:hover .memory-img {
+            transform: scale(1.05);
+        }
+
+        .memory-date {
+            font-family: 'Fraunces', serif;
+            color: #2b1b2a;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .memory-caption {
+            font-size: 1rem;
+            line-height: 1.5;
+            color: #666;
+        }
+
+        /* Final Message Section */
+        .final-message {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            margin-top: 3rem;
+            position: relative;
+            z-index: 3;
+        }
+
+        .final-message h2 {
+            font-family: 'Fraunces', serif;
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            color: #2b1b2a;
+            margin-bottom: 2rem;
+            animation: heartbeat 2s infinite;
+        }
+
+        @keyframes heartbeat {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        .final-message p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            line-height: 1.8;
+        }
+
+        .goodbye-btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            background: linear-gradient(45deg, #ff69b4, #da70d6);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.4);
+            animation: float 3s infinite ease-in-out;
+        }
+
+        .goodbye-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(255, 105, 180, 0.6);
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInScale {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        /* Generate Hearts */
+        .js-generate-hearts {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(45deg, #ff69b4, #da70d6);
+            border-radius: 6px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .welcome h1 {
+                font-size: 3rem;
+            }
+
+            .memory-container {
+                grid-template-columns: 1fr;
+            }
+
+            .final-message h2 {
+                font-size: 2.5rem;
+            }
+
+            .photo-mosaic {
+                padding: 0 1.25rem 2rem;
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="magic-sparkles"></div>
+    <div class="floating-hearts">
+        <!-- Hearts will be generated via CSS -->
+        <div class="heart" style="--float-duration: 6s; --delay: 0s; --translate-x: 20px;">🧕</div>
+        <div class="heart" style="--float-duration: 8s; --delay: 1s; --translate-x: -30px;">👧🏻</div>
+        <div class="heart" style="--float-duration: 7s; --delay: 2s; --translate-x: 40px;">🍜</div>
+        <div class="heart" style="--float-duration: 9s; --delay: 3s; --translate-x: -20px;">🥵</div>
+        <div class="heart" style="--float-duration: 5s; --delay: 4s; --translate-x: 30px;">🧠</div>
+    </div>
+
+    <section class="welcome">
+        <h1>Some Beautiful Moments With a stupid GIRL.</h1>
+        <p>Every moment spent with you has been magical.</p>
+    </section>
+
+    <div class="memory-container">
+        <div class="memory-card">
+            <img src="./PXL_20250312_142801087.jpg" alt="First Date" class="memory-img">
+            <div class="memory-date">First Time Going Out Together</div>
+            <div class="memory-caption">You’re truly one of the sweetest(stupidest too) girl I know, and I feel lucky to have you❤️</div>
+        </div>
+        <div class="memory-card">
+            <img src="./PXL_20250412_1223159880.jpg" alt="Beach Day" class="memory-img">
+            <div class="memory-date">An Actual Date?</div>
+            <div class="memory-caption">From eating together to eating aside each other.. we indeed came far.💕</div>
+        </div>
+        <div class="memory-card">
+            <img src="./IMG_20250419_131625_258.webp" alt="Movie Night" class="memory-img">
+            <div class="memory-date">Some moments in the woods..</div>
+            <div class="memory-caption">Keep being aside me and the stupid girl I love so much💖</div>
+        </div>
+
+    </div>
+
+    <div class="photo-mosaic" aria-hidden="true">
+        <div class="photo-card">
+            <img src="./PXL_20251025_071159906.MP.jpg" alt="">
+            <div class="photo-caption"><strong>Angry Girl With a Side Eye Everytime..</strong>Always angry even at the center of the lake.</div>
+        </div>
+        <div class="photo-card">
+            <img src="./PXL_20251025_083645585.jpg" alt="">
+            <div class="photo-caption"><strong>Weird Hobbies..</strong>Stone at a Lake shore after a Kayak.</div>
+        </div>
+        <div class="photo-card">
+            <img src="./PXL_20260314_093806962~2.jpg" alt="">
+            <div class="photo-caption"><strong>Home inside a Home..</strong>Recent time in my room with a boy? ✨</div>
+        </div>
+        <div class="photo-card">
+            <img src="./IMG_20250419_122041_543.webp" alt="">
+            <div class="photo-caption"><strong>First Time Together..</strong>Roaming around Matepani and Kaundada.</div>
+        </div>
+        <div class="photo-card">
+            <img src="./FB_IMG_1773400015230.jpg" alt="">
+            <div class="photo-caption"><strong>Bhalu pahad ma ghumgham😍</strong></div>
+        </div>
+        <div class="photo-card">
+            <img src="./PXL_20250715_231048779~3.jpg" alt="">
+            <div class="photo-caption"><strong>Some speacial things from someone special...</strong>Example textContent ✨</div>
+        </div>
+        <div class="photo-card">
+            <img src="./PXL_20260311_073526669~2.jpg" alt="">
+            <div class="photo-caption"><strong>Stupid and childish as always...😉</strong></div>
+        </div>
+    </div>
+
+    <section class="final-message">
+        <h2>Thank You for the Memories</h2>
+        <p>Happy Birthday to you Stupid Priya, the girl who somehow managed to be the most loving person I know while simultaneously being the biggest dumba in the world! 💖
+             It’s officially been almost a year of us non-stop talking
+             which is honestly a miracle considering how much of that time is spent with me explaining simple things to my favorite stupid girl.
+             <br><br>you are my favorite person to annoy and the only one I want to keep "truly" talking to and loving  for many more years to come. ❤️
+             <br><br>
+
+            I am so incredibly sorry for last year when I managed to wish you a happy birthday a whole day late. From Now on I promise to remember the date so I can spend every future birthday reminding you how much I love you my Piru even if you are an stupiddddd.💕</p>
+        <a href="#" class="goodbye-btn">Happy Birthday My Piruuu💝</a>
+    </section>
+</body>
+
+</html>
