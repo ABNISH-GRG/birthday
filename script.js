@@ -14,7 +14,7 @@ document.addEventListener('mousemove', (e) => {
 });
 
 // Typing effect for greeting
-const greetingText = "The most beautiful girl I know is turning 18yrs(balla) today. May be the most childish 19 year old ...!💖";
+const greetingText = "The most beautiful girl I know is turning 19yrs(balla) today. May be the most childish 19 year old ...!💖";
 const greetingElement = document.querySelector('.greeting');
 let charIndex = 0;
 
